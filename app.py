@@ -1,28 +1,15 @@
 import streamlit as st
 import pandas as pd
-import mysql.connector
 import plotly.express as px
 
 st.set_page_config(page_title="OLA Ride Analytics", layout="wide")
 
 st.title("🚕 OLA Ride Analytics Dashboard")
-@st.cache_data
-def load_data():
-    connection = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="Ashucat2026",
-        database="ola_project"
-    )
-    
-    query = "SELECT * FROM ola_dataset1"
-    df = pd.read_sql(query, connection)
-    connection.close()
-    
-    return df
+# Load CSV file
+df = pd.read_csv("OLA_DataSet1.csv")
 
-df = load_data()
-  
+# Convert date column
+df["Ride_Date_Clean"] = pd.to_datetime(df["Ride_Date_Clean"]
 total_rides = df.shape[0]
 total_revenue = df["Ride_Revenue"].sum()
 cancellation_rate = (df[df["Booking_Status"] != "Success"].shape[0] / total_rides) * 100
@@ -56,3 +43,4 @@ vehicle_filter = st.selectbox("Select Vehicle Type", df["Vehicle_Type"].unique()
 
 
 filtered_df = df[df["Vehicle_Type"] == vehicle_filter]
+
