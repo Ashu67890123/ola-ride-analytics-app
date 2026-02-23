@@ -9,7 +9,7 @@ st.title("🚕 OLA Ride Analytics Dashboard")
 df = pd.read_csv("OLA_DataSet1.csv")
 
 # Convert date column
-df["Ride_Date_Clean"] = pd.to_datetime(df["Ride_Date_Clean"]
+df["Ride_Date_Clean"] = pd.to_datetime(df["Ride_Date_Clean"])
 total_rides = df.shape[0]
 total_revenue = df["Ride_Revenue"].sum()
 cancellation_rate = (df[df["Booking_Status"] != "Success"].shape[0] / total_rides) * 100
@@ -43,4 +43,5 @@ vehicle_filter = st.selectbox("Select Vehicle Type", df["Vehicle_Type"].unique()
 
 
 filtered_df = df[df["Vehicle_Type"] == vehicle_filter]
+
 
