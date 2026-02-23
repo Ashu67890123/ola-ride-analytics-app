@@ -6,7 +6,7 @@ st.set_page_config(page_title="OLA Ride Analytics", layout="wide")
 
 st.title("🚕 OLA Ride Analytics Dashboard")
 # Load CSV file
-df = pd.read_csv("OLA_DataSet1.csv")
+df = pd.read_csv("OLA_DataSet.csv")
 
 # Convert date column
 df["Ride_Date_Clean"] = pd.to_datetime(df["Ride_Date_Clean"])
@@ -43,5 +43,6 @@ vehicle_filter = st.selectbox("Select Vehicle Type", df["Vehicle_Type"].unique()
 
 
 filtered_df = df[df["Vehicle_Type"] == vehicle_filter]
+
 
 
