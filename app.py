@@ -23,7 +23,7 @@ def load_data():
 
 df = load_data()
   
-  total_rides = df.shape[0]
+total_rides = df.shape[0]
 total_revenue = df["Ride_Revenue"].sum()
 cancellation_rate = (df[df["Booking_Status"] != "Success"].shape[0] / total_rides) * 100
 
@@ -53,5 +53,6 @@ fig2 = px.bar(vehicle_revenue,
 
 st.plotly_chart(fig2, use_container_width=True)
 vehicle_filter = st.selectbox("Select Vehicle Type", df["Vehicle_Type"].unique())
+
 
 filtered_df = df[df["Vehicle_Type"] == vehicle_filter]
